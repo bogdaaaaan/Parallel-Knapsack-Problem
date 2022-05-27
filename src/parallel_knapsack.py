@@ -7,14 +7,17 @@ items_file = "C:/Users/bodya/Desktop/Parallel/coursach/Parallel-Knapsack-Problem
 resulting_file = "C:/Users/bodya/Desktop/Parallel/coursach/Parallel-Knapsack-Problem/src/items/result.txt"
 
 class KnapsackThread(Thread):
-    def __init__(self, item, items, capacity_list):
+    def __init__(self, items, capacity_list):
         Thread.__init__(self)
-        self.item = item
+        self.item = 0
         self.items = items
         self.capacity_list = capacity_list
-        self.result = []
 
-    def run(self):
+
+    def set_item(self, item):
+        self.item = item
+
+    def compute(self):
         for capacity in self.capacity_list:
             # max value we can get without current item
             # guarantee to exist
@@ -62,27 +65,31 @@ def parallel_knapsack(max_capacity, generate_items, threads_count):
     # [[0,1,2,3,4,5,6,7,8,9],[10,11,12,13,14,15,16,17,18,19],[20,21,22,23,24,25,26,27,28,29]]
     capacity_list = chunk_array(list(range(1, cols)), threads_count)
     
+    # create thread_list
+    thread_list = []
+
+    # for each thread
+    for t in range(threads_count):
+        # give info about matrix, current row,
+        # all items and which capacity indexes this thread should cover
+        thread = KnapsackThread(items, capacity_list[t])
+        thread_list.append(thread)
+        thread.start()
+
     # start counting time
     start_time = time.time()
 
     # for each row in matrix
     for item in range(1, rows):
 
-        # create thread_list
-        thread_list = []
-
-        # for each thread
-        for t in range(threads_count):
-            # give info about matrix, current row,
-            # all items and which capacity indexes this thread should cover
-            thread = KnapsackThread(item, items, capacity_list[t])
-            thread_list.append(thread)
-            thread.start()
-        
-        # after threads created wait untill all finish work
         for t in thread_list:
-            t.join()
+            t.set_item(item)
+            t.compute()
         
+    # after threads created wait untill all finish work
+    for t in thread_list:
+        t.join()
+    
     # print time 
     print("time to compute:", time.time() - start_time)
     
@@ -123,10 +130,10 @@ def parallel_knapsack(max_capacity, generate_items, threads_count):
     print_selected_items_to_file(selected_items, resulting_file)
 
 
-MAX_CAPACITY = 4000
-ITEMS = 2000
+MAX_CAPACITY = 5000
+ITEMS = 5000
 
 global matrix
 matrix = build_matrix(ITEMS + 1, MAX_CAPACITY + 1)
 
-parallel_knapsack(MAX_CAPACITY, False, 10)
+parallel_knapsack(40, 10, 4)

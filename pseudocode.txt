@@ -30,3 +30,42 @@ for each row (beside first):
 
     collect work and fill current row with results from each thread
 
+
+
+('Sequential knapsack',)
+('time to compute:', 16.246999979019165)
+('max value is: ', 17654)
+('Sequential knapsack',)
+('time to compute:', 15.821000099182129)
+('max value is: ', 17654
+
+('Parallel knapsack, threads amount:', 1)
+('time to compute:', 18.51199984550476)
+('max value is: ', 17654)
+('Parallel knapsack, threads amount:', 1)
+('time to compute:', 18.87000012397766)
+('max value is: ', 17654)
+
+('Parallel knapsack, threads amount:', 2)
+('time to compute:', 18.217000007629395)
+('max value is: ', 17654)
+('Parallel knapsack, threads amount:', 2)
+('time to compute:', 19.17200016975403)
+('max value is: ', 17654)
+
+('Parallel knapsack, threads amount:', 4)
+('time to compute:', 17.806999921798706)
+('max value is: ', 17654)
+('Parallel knapsack, threads amount:', 4)
+('time to compute:', 18.699000120162964)
+('max value is: ', 17654)
+
+('Parallel knapsack, threads amount:', 8)
+('time to compute:', 17.84599995613098)
+('max value is: ', 17654)
+('Parallel knapsack, threads amount:', 24)
+('time to compute:', 17.638000011444092)
+('max value is: ', 17654)
+('Parallel knapsack, threads amount:', 100)
+('time to compute:', 18.805999994277954)
+('max value is: ', 17654)
