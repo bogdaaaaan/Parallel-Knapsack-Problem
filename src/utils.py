@@ -1,5 +1,12 @@
 import random
 
+
+def generate_items_in_array(num_of_items):
+    res = []
+    for i in range(num_of_items):
+        res.append((i, random.randint(1,20), random.randint(1,20)))
+    return res
+
 # generate items for problem
 def generate_items_in_file(file_name, num_of_items):
     file = open(file_name, "w")
