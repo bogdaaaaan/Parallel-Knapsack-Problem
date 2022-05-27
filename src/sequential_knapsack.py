@@ -5,8 +5,7 @@ items_file = "C:/Users/bodya/Desktop/Parallel/coursach/Parallel-Knapsack-Problem
 resulting_file = "C:/Users/bodya/Desktop/Parallel/coursach/Parallel-Knapsack-Problem/src/items/result.txt"
 
 def sequential_knapsack(max_capacity, generate_items):
-    print("qwerty")
-    start_time = time.time()
+    print("Sequential knapsack",)
     # if random generation selected, generate random max_capacity of items 
     if (generate_items): generate_items_in_file(items_file, generate_items)
 
@@ -19,6 +18,7 @@ def sequential_knapsack(max_capacity, generate_items):
     # create matrix
     matrix = build_matrix(rows, cols)
 
+    start_time = time.time()
     # for each item in matrix
     for item in range(1, rows):
         # for each capacity from 0 to max weigth
@@ -47,15 +47,16 @@ def sequential_knapsack(max_capacity, generate_items):
             
             # pick larger of the two
             matrix[item][capacity] = max(maxValWithoutCurr, maxValWithCurr)
-        #print("row {} done".format(item))
-       
+    
+    # print time 
+    print("time to compute:", time.time() - start_time)
     
     
     # start backtracking to get list of selected items
     # save result of max value
     max_value = matrix[number][max_capacity]
 
-    print(max_value)
+    print("max value is: ", max_value)
 
     # create temporary variable with max_capacity value
     temp_max_capacity = max_capacity
@@ -81,8 +82,6 @@ def sequential_knapsack(max_capacity, generate_items):
 
     # reverse items from start to end
     selected_items.reverse()
-
-    print(time.time() - start_time)
     
     # pring result
     clear_file(resulting_file)
@@ -90,4 +89,4 @@ def sequential_knapsack(max_capacity, generate_items):
     print_selected_items_to_file(selected_items, resulting_file)
 
 
-sequential_knapsack(2000, False)
+sequential_knapsack(4000, 2000)

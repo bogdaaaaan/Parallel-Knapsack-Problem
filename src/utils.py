@@ -67,6 +67,3 @@ def print_selected_items_to_file(items, file_name):
 def chunk_array(a, n):
     k, m = divmod(len(a), n)
     return [a[i*k+min(i, m):(i+1)*k+min(i+1, m)] for i in range(n)]
-
-
-print(chunk_array(list(range(1, 29)), 5))

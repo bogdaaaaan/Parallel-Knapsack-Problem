@@ -1,0 +1,32 @@
+
+matrix = [rows][cols]
+chunks = [threads_count][chunk_size]
+threads_list = [threads_count]
+
+for t in range(threads_count):
+    t = Thread()
+    threads_list.append(t)
+
+for 1 in range(rows):
+
+    for t in threads_list:
+        t.start()
+
+    for 1 in range(cols)
+        do things
+
+
+create matrix, chunks (list of indexes each thread will compute), and empty list of threads
+create threads, give each info about items and it's chunk, fill threads list
+
+for each row (beside first):
+    fill each thread with new data about work (matrix state, current row index)
+
+    for each thread in thread list:
+        thread.compute_work()
+
+    for each thread in thread list:
+        thread.get_data()
+
+    collect work and fill current row with results from each thread
+
