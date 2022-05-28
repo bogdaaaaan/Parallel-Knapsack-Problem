@@ -90,4 +90,4 @@ def sequential_knapsack(max_capacity, generate_items):
     # print_selected_items_to_file(selected_items, resulting_file)
 
 
-sequential_knapsack(10000, 12000)
+sequential_knapsack(40, 10)
